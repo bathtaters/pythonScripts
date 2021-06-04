@@ -1,4 +1,4 @@
-# myPythonScripts
+# My Python Scripts
 Assorted Python Scripts that I've authored throughout the years.
 
 ### Instructions
