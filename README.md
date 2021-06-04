@@ -1,6 +1,5 @@
 # myPythonScripts
 Assorted Python Scripts that I've authored throughout the years.
-Each folder has an explaination of all the scripts in it.
 
 ### Instructions
   * All scripts should be run in IDLE.
