@@ -25,7 +25,7 @@ import os
 if d[-1:] != '/': d = d + '/'
 
 # User defined file list
-#dirList = ['PROP WILD Mic Handling_01.wav']
+#dirList = ['file01.wav','file02.wav']
 
 # Build file list
 dirList = os.listdir(d)
