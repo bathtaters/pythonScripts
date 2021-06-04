@@ -1,5 +1,5 @@
 # utilityScripts
-Assorted utility Python Scripts.
+Various Python Scripts for manipulating files/text/etc.
 
 ### File Descriptions
 *Filename* | *Description*
