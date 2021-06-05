@@ -4,13 +4,12 @@ Various Python Scripts for reporting finances.
 ### File Descriptions
 *Filename* | *Description*
 -----:|:-----
-**deNester_QuickBooks.py** | Coming soon
-**flattenFolder2D.py** | Coming soon
+**deNester_QuickBooks.py** | Flatten Quickbooks' image archive
 **getAmazonReceipts.py** | Download all Amazon yearly receipts (Uses Selenium)
 **getGmailMessages.py** | Download GMail messages/attachments as PDFs (Uses Selenium)
-**getPayPalReceipts.py** | Coming soon
-**receiptParse_main.py** | Coming soon
-**receiptParse_pdfOCR.py** | Coming soon
+**getPayPalReceipts.py** | Download PayPal yearly receipts (Uses Selenium)
+**receiptParse_main.py** | Extract data from receipt PDFs and save as a CSV (Uses receiptParse_pdfOCR.py & xpdf/poppler)
+**receiptParse_pdfOCR.py** | Converts images/pdfs to text-embedded PDF/As (Uses Tesseract, pdfTk & xpdf/poppler)
 
 ### Instructions
 Download any dependencies.
