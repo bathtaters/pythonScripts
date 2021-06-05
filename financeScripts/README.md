@@ -12,15 +12,20 @@ Various Python Scripts for reporting finances.
 **receiptParse_pdfOCR.py** | Converts images/pdfs to text-embedded PDF/As (Uses Tesseract, pdfTk & xpdf/poppler)
 
 ### Instructions
-Download any dependencies.
-All scripts should be run in IDLE.
-Configure variables at top of file then run.
+ * Download any dependencies.
+ * All scripts should be run in IDLE.
+ * Configure variables at top of file then run.
 
 ### Dependencies
-*Name* | *Install URL* | *Install Notes*
------:|:-----:|-----
-**Selenium** | https://pypi.org/project/selenium/ | PIP: pip install -U selenium
-**Chromedriver** | https://sites.google.com/a/chromium.org/chromedriver/downloads | Download & move to /usr/local/bin/
-**Tesseract** | https://tesseract-ocr.github.io/tessdoc/Installation.html#macos | Homebrew: brew install tesseract
-**pdfTk** | https://www.pdflabs.com/tools/pdftk-server/ | Download & install
-**xpdf** OR **poppler** | https://www.xpdfreader.com/download.html OR https://poppler.freedesktop.org/ | Homebrew: brew install poppler OR xpdf
+*Install URL* | *Install Notes*
+-------------:|:----------------
+[**Selenium**](https://pypi.org/project/selenium/ "Selenium install instructions") | PIP: pip install -U selenium
+[**Chromedriver**](https://sites.google.com/a/chromium.org/chromedriver/downloads "Chromedriver binaries") | Download from link & move to /usr/local/bin/
+[**Tesseract**](https://tesseract-ocr.github.io/tessdoc/Installation.html#macos "Tesseract install instructions") | Homebrew: brew install tesseract
+[**pdfTk**](https://www.pdflabs.com/tools/pdftk-server/ "pdfTk installer") | Download from link & install
+[**xpdf**](https://www.xpdfreader.com/download.html "xpdf binaries") or [**poppler**](https://poppler.freedesktop.org/ "Poppler repository") | Homebrew: brew install xpdf or brew install poppler
+
+*Helpers* | *Description*
+---------:|:----------------
+[**Homebrew**](https://docs.brew.sh/Installation "Homebrew install instructions") | MacOSX package manager (To install dependencies)
+[**pip**](https://pip.pypa.io/en/stable/installing/ "pip install instructions") | Python package manager (To install Python modules)
