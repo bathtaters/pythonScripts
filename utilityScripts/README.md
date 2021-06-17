@@ -13,7 +13,7 @@ Various Python Scripts for manipulating files/text/etc.
 **reverseRTF.py** | Reverse order of lines in a simple .rtf file
 **sha1_b64_hasher.py** | Create Base64 hash from file
 **textToCSV.py** | Parse data from a text file into a CSV table using RegEx
-**VCard.py** | Coming soon
+**vcardFunctions.py** | Set of functions that can be used to manipulate/parse VCards
 
 
 ### Instructions
