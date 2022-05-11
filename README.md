@@ -1,5 +1,5 @@
 # My Python Scripts
-Assorted Python Scripts that I've authored throughout the years.
+Monorepo containing assorted Python utility scripts that I've authored throughout the years.
 
 ### Instructions
   * All scripts should be run in IDLE.
