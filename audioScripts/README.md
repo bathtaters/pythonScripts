@@ -5,6 +5,7 @@ Various Python Scripts for manipulating audio.
 *Filename* | *Description*
 -----:|:-----
 **buildWAV.py** | Append WAV header to raw audio data
+**combine_files.py** | Add metadata from one file to another
 **edlParse_Premiere.py** | Parse Premiere EDL for audio filenames
 **fixChunkSize.py** | Fixes corrupted chunk sizes in Broadcast Wave files
 **metaClear_BWF.py** | Clear Bext & iXML metadata from Broadcast Wave file header
