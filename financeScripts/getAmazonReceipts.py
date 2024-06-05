@@ -84,7 +84,7 @@ def get_fname(order_no):
 CHROMEDRIVER = '/usr/local/bin/chromedriver' # Location of ChromeDriver
 PG_TIMEOUT = 1000 # Milliseconds before Selenium gives up
 
-NUM_XPATH = "//span[@class='a-color-secondary value']"
+NUM_XPATH = "//bdi[@dir='ltr']" # "//span[@class='a-color-secondary value']"
 NEXT_CLASS = 'a-last'
 DISABLED_CLASS = 'a-disabled'
 
