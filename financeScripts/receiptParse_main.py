@@ -1091,15 +1091,17 @@ class PayPalOut(Receipt):
     _counter = 0
     category = 'TBD'
 
-    parameters = { 'Account' : ((r'Funding Source:',0),r'\s(?:x-)?(\d{4}|TXNBML)\s'),
-                   'Date' : ((REX['DATESTR']+r'\sat\s',0),REX['DATESTR']+r'\sat\s'),
-                   'Total' : ((r'Funding Source:',0),r'Funding Source:\s'+REX['PRICE']+'\s') }
-    text_blocks = (r'^\s?Transaction details',
+    parameters = { 'Account' : ((r'Funding Source:',0),r'\s(?:x[-–—])?(\d{4}|TXNBML)\s'),
+                   'Date' : ((REX['DATESTR']+r'\s+at\s',0),REX['DATESTR']),
+                   'Total' : ((r'Funding Source:',0),r'Funding Source:\s*([-–—]?[\'"`]?\s*'+REX['PRICE']+')\s') }
+    text_blocks = (r'^\s?Transaction det',
                    r'\sResolution\sCenter', 1)
                    
     def row_fix(self,row,rec_num):
         tot_row = COLS.index('Total')
+        if type(row[tot_row]) is tuple: row[tot_row] = row[tot_row][0]
         if not row[tot_row]: return 0
+        row[tot_row] = row[tot_row].replace('–','-').replace('—','-').replace("'",'').replace('"','').replace('`','')
         row[tot_row] = row[tot_row][1:] if row[tot_row][0] == '-' else '-'+row[tot_row]
         if row[tot_row][0] == '-': self.category = 'Income'
         return 0
