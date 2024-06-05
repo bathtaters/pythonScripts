@@ -276,8 +276,9 @@ def next_page():
             next_button = e
             break    
     if not next_button:
-        print('ERROR: Next button not found!')
-        return -1
+        print('Next button not found, check browser.')
+        if (get_key('[C]ontinue running, [A]bort?', ['c','a']) == 'a'):
+            return -1
     # Check if enabled
     if is_disabled(next_button):
         if DEBUG: print('D!LAST PAGE')
@@ -291,6 +292,14 @@ def next_page():
 
 
 ### OTHER METHODS
+
+def get_key(message = 'yes/no?', valid_keys = ['y','n']):
+    valid_keys = [ k.lower() for k in valid_keys ]
+    print(message, end=' ')
+    ltr = ''
+    while (not(ltr in valid_keys)):
+        ltr = input(message + ' ')[0].lower()
+        
 
 def download_pdf(url, outfile):
     if TEST_MODE:
