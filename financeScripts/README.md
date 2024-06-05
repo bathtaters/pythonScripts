@@ -4,6 +4,8 @@ Various Python Scripts for reporting finances.
 ### File Descriptions
 *Filename* | *Description*
 -----:|:-----
+**[csv2qbo.py](csv2qbo.py)** | Convert a CSV to a QuickBooks-compatible OFX/QBO
+**[csv2qbo_BIDs.csv](csv2qbo_BIDs.csv)** | CSV containing a list of QuickBooks-compatible bank IDs
 **[deNester_QuickBooks.py](deNester_QuickBooks.py)** | Flatten Quickbooks' image archive
 **[getAmazonReceipts.py](getAmazonReceipts.py)** | Download all Amazon yearly receipts (Uses Selenium)
 **[getGmailMessages.py](getGmailMessages.py)** | Download GMail messages/attachments as PDFs (Uses Selenium)
