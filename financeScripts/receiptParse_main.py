@@ -168,12 +168,11 @@ COL_DATA = {
         '0000' : 'Account Ending -0000 Name',
         'TXNBML' : 'PayPal Credit',
         'Venmo': 'Venmo',
-        'Cash' : 'Cash'
+        'Cash' : 'Cash',
     }, 1 : {
         'Title' : 'Vendor',
-        'instance_var' : 'vendor_name', # Get class var "vendor_name"
+        'instance_var' : 'vendor_name',
         '' : BLANK_CELL,
-        # Substitutions
         'Generic' : '',
         'AmazonPrime' : 'Amazon',
         'Seamless' : 'Restaurant',
@@ -185,32 +184,37 @@ COL_DATA = {
         'PayPalIn' : '-TBD-',
         'PayPalOut' : '-TBD-',
         'SquarePay' : '-TBD-',
-    }, 2 : {
+    },
+    2 : {
         'Title' : 'Date',
-        '' : BLANK_CELL
-    }, 3 : {
+        '' : BLANK_CELL,
+    },
+    3 : {
         'Title' : 'Category',
         'instance_var' : 'category',
         '' : BLANK_CELL,
-        # Substitutions
         'TBD' : 'Uncategorized',
-    }, 4 : {
+    },
+    4 : {
         'Title' : 'Total',
-        '' : BLANK_CELL
-    }, 5 : {
+        '' : BLANK_CELL,
+    },
+    5 : {
         'Title' : '',
         'instance_var' : 'blank',
-        '' : BLANK_CELL
-    }, 6 : {
+        '' : BLANK_CELL,
+    },
+    6 : {
         'Title' : 'Folder Name',
         'instance_var' : 'folder',
-        '' : BLANK_CELL
-    }, 7 : {
+        '' : BLANK_CELL,
+    },
+    7 : {
         'Title' : 'Receipt Filename',
         'instance_var' : 'name',
-        'include_rnum' : '', # Append receipt number to end of name
-        '' : BLANK_CELL
-    }
+        'include_rnum' : '',
+        '' : BLANK_CELL,
+    },
 }
 
 
@@ -263,23 +267,25 @@ only_use = []
 # Advanced debug options
 DEBUG_IGN_CHRS = [[0xc2,0xa0],[0xc2,0xad]] # See 'badchr'
 DEBUG_PRNT_STR = '' # See 'hasstr'
-DEBUG = { 'all'      : 1,   # Print all text before capture
-          'hastxt'   : 1,   # Print lines from vendor pre-search (In is_vendor())
-          'hasstr'   : 0,   # Print only if line has DEBUG_PRNT_STR
-          'nbytes'   : 0,   # Print first <n> bytes of line (from 'all' or 'hasstr')
-          'badchr'   : 0,   # Print any removed chars + line (Ignoring DEBUG_IGN_CHRS)
-          'bounds'   : 1,   # Print capture bounds
-          'captured' : 0,   # Print text after capture
-          'special'  : 1,   # Print info from child methods
-          'backup'   : 0,   # Print original & backup dictionaries
-          'parser'   : 0,   # Which parser method is used
-          'lines'    : 1,   # Print lines sent for parsing
-          'parsed'   : 1,   # Print parsed data
-          'fixed'    : 0,   # Print row after run through fixed method
-          'instance' : 0,   # Print each instance variable after assigned
-          'finalcol' : 1,   # Print final column data
-          'rawend'   : 0,   # Print raw object data after parsing
-          'ending'   : 0 }  # Variables at end of reciept method
+DEBUG = {
+    'all'      : 0,   # Print all text before capture
+    'hastxt'   : 0,   # Print lines from vendor pre-search (In is_vendor())
+    'hasstr'   : 0,   # Print only if line has DEBUG_PRNT_STR
+    'nbytes'   : 0,   # Print first <n> bytes of line (from 'all' or 'hasstr')
+    'badchr'   : 0,   # Print any removed chars + line (Ignoring DEBUG_IGN_CHRS)
+    'bounds'   : 1,   # Print capture bounds
+    'captured' : 1,   # Print text after capture
+    'special'  : 1,   # Print info from child methods
+    'backup'   : 0,   # Print original & backup dictionaries
+    'parser'   : 0,   # Which parser method is used
+    'lines'    : 1,   # Print lines sent for parsing
+    'parsed'   : 1,   # Print parsed data
+    'fixed'    : 0,   # Print row after run through fixed method
+    'instance' : 0,   # Print each instance variable after assigned
+    'finalcol' : 1,   # Print final column data
+    'rawend'   : 0,   # Print raw object data after parsing
+    'ending'   : 0,   # Variables at end of reciept method
+}
 
 
 
