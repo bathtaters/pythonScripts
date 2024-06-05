@@ -110,7 +110,7 @@ ERR_CODES = { 0 : 'Included',
               2 : 'Skipped',
               -1 : 'Aborted' }
 # Pre-defined regular expressions
-DATE_SEPS = '-/'
+DATE_SEPS = '/-–—'
 MONTHS = ( tuple( datetime.date(2008, m+1, 1).strftime('%b') for m in range(12) ),
            tuple( datetime.date(2008, m+1, 1).strftime('%B') for m in range(12) ) )
 REX_DATE_ADV = r'((?:' + '|'.join(MONTHS[0]+MONTHS[1]) + r')\s*' + \
@@ -126,8 +126,8 @@ REX = { 'DATESTR' : r"(\w{3,9}\.?\s*[0-3]?\d,?\s*'?\d{2,4})",
         'DATENUM2' : r'([0-3]?\d['+DATE_SEPS+r']\d{1,4})',
         'DATEFLIP' : r'((?:'+str(YEAR)[:2]+')?'+str(YEAR)[2:]+'['+DATE_SEPS+r'][01]?\d['+DATE_SEPS+r'][0-3]?\d)',
         'DATENFLEX' : r'((?:\w{1,2}){1,2}['+DATE_SEPS+r']\w{1,4})',
-        'PRICE' : r'(-?\$?\s*[\w,]+\.\w{2})',
-        'PRICECOPT' : r'(-?\$?\s*[\w,]+(?:\.\w{2})?)',
+        'PRICE' : r'([-–—]?\$?\s*[\w,]+\.\w{2})',
+        'PRICECOPT' : r'([-–—]?\$?\s*[\w,]+(?:\.\w{2})?)',
         '1CHAR' : '^\s*(.)',
         'ALL' : r'^(.+)\s$' }
 
@@ -263,7 +263,7 @@ only_use = []
 # Advanced debug options
 DEBUG_IGN_CHRS = [[0xc2,0xa0],[0xc2,0xad]] # See 'badchr'
 DEBUG_PRNT_STR = '' # See 'hasstr'
-DEBUG = { 'all'      : 0,   # Print all text before capture
+DEBUG = { 'all'      : 1,   # Print all text before capture
           'hastxt'   : 1,   # Print lines from vendor pre-search (In is_vendor())
           'hasstr'   : 0,   # Print only if line has DEBUG_PRNT_STR
           'nbytes'   : 0,   # Print first <n> bytes of line (from 'all' or 'hasstr')
@@ -337,9 +337,6 @@ COLS = [ COL_DATA[i]['Title'] if i in COL_DATA else '' for i in range(max(COL_DA
 INSTANCE_COLS = [ i for i,d in COL_DATA.items() if 'instance_var' in d ]
 BLANK_ENTRY = [BLANK_CELL]*len(COLS)
 
-if DEBUG_OFF:
-    for a in DEBUG: DEBUG[a] = 0
-else: VERBOSE = True
 
 
 ## PARENT CLASS ##
@@ -1763,6 +1760,10 @@ def default(top_dir):
     # Use default parameters
     return main(top_dir,VERBOSE,None,YEAR,AUTO,ALWAYS_CHOOSE,LOG)
 
+
+if DEBUG_OFF:
+    for a in DEBUG: DEBUG[a] = 0
+else: VERBOSE = True
 
 default(inp_dir)
     
