@@ -8,7 +8,7 @@ Monorepo containing assorted Python utility scripts that I've authored throughou
 ### Collection Info
 *Collection* | *Description*
 -----:|:-----
-**audioScripts** | Various Python Scripts for manipulating audio.
-**videoScripts** | Various Python Scripts for working with video.
-**financeScripts** | Various Python Scripts for reporting finances.
-**utilityScripts** | Various Python Scripts for manipulating files/text/etc.
+**[audioScripts](audioScripts)** | Various Python Scripts for manipulating audio.
+**[videoScripts](videoScripts)** | Various Python Scripts for working with video.
+**[financeScripts](financeScripts)** | Various Python Scripts for reporting finances.
+**[utilityScripts](utilityScripts)** | Various Python Scripts for manipulating files/text/etc.
