@@ -12,9 +12,9 @@ TYPO_RANGE = (0,1) # (min,max) typos before it is mismatched, None skips rough m
 ACCU_TYPO = False # Use more accurate typo checking, False is faster
 UPDATE = 4 # Frequency to print % updates, None skips updates
 SAMPLESIZE = None # Comb first N lines of list, None combs all
-USE_KEYS = None # Only save these match-types (Index(es) of KEY), None saves all
+USE_KEY = None # Only save these match-types (Index(es) of KEY), None saves all
 
-# Definition for USE_KEYS (Enter index of this array)
+# Definition for USE_KEY (Enter index of this array)
 KEY = ('See below','Exact match', 'Partial match', 'Match with typo')
 
 
@@ -116,7 +116,7 @@ def main(infile=inp,outfile=None):
             counts[KEY.index(output[i][2])] = counts[KEY.index(output[i][2])] + 1
             print(*output[i],sep='\t')
         print('\nTotal:',len(output),',',KEY[1],counts[1],',',KEY[2],counts[2],',',KEY[3],counts[3])
-        print('Typo Threshold:',TYPO_THRESH,', Accurate Typo Check:',ACCU_TYPO,', Update Freq:',UPDATE)
+        print('Typo Range:',TYPO_RANGE,', Accurate Typo Check:',ACCU_TYPO,', Update Freq:',UPDATE)
     else: print('Saved to',outfile)
 
 

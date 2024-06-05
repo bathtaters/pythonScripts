@@ -51,7 +51,7 @@ class Timecode:
         else: self.init_err()
 
     def init_err(self):
-        print('Error with TC [',tc,']. Set to 0.')
+        print('Error with TC. Set to 0.')
         self.init_int(0)
 
     def init_int(self,tc):

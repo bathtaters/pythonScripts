@@ -123,7 +123,7 @@ def shell(cmd):
             return '\t\t' + ret.replace('\n','\n\t\t')
     return 0
 
-def combine_pages(indir,outfile,ext='pdf'):
+def combine_pages(indir,outfile,ext='pdf',log=[]):
     ext = ext.lower().replace('.','')
     pdfs = [ os.path.join(indir,p) for p in os.listdir(indir) \
              if os.path.splitext(p)[1].lower().replace('.','') == ext ]
@@ -134,9 +134,8 @@ def combine_pages(indir,outfile,ext='pdf'):
         # Combiner returned error
         if VERBOSE: print('\t',end='')
         log.append('Error repacking\n'+x)
-        print('Error repacking',p)
+        print('Error repacking',os.path.split(outfile)[1])
         if VERBOSE: print(x)
-        shutil.rmtree(new_dir)
         return 1
     return 0
         

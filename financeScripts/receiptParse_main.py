@@ -693,7 +693,7 @@ class Receipt:
                 capt_combo = []
                 for capt in self.captured:
                     for r,rec in enumerate(capt):
-                            if r >= len(new): capt_combo.append(rec)
+                            if r >= len(capt_combo): capt_combo.append(rec)
                             else: capt_combo[r] += rec
                 self.captured = capt_combo
             
