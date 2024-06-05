@@ -380,15 +380,17 @@ class Receipt:
             return 1
         if DEBUG['hastxt']: print('--TEXT CHECK FOR VENDOR:',vendor.__name__)
         with open(txtfile,'rb') as f:
+            combined = ''
             for line in f:
                 if line.strip() == b'': continue
                 if DEBUG['hastxt']: print(line_count,str(line)[1:])
+                combined += fix_line(line)
                 if isinstance(vendor.has_txt[1],str):
-                    if vendor.has_txt[1] in fix_line(line):
+                    if vendor.has_txt[1] in combined:
                         if DEBUG['hastxt']: print('--TEXT FOUND IN ABOVE LINE')
                         return 2
                 elif hasattr(vendor.has_txt[1],'search'):
-                    if vendor.has_txt[1].search(fix_line(line)):
+                    if vendor.has_txt[1].search(combined):
                         if DEBUG['hastxt']: print('--TEXT FOUND IN ABOVE LINE')
                         return 2
                 else: break
