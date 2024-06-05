@@ -48,6 +48,8 @@ SKIPS = {
         'General Withdrawal',
         'Order',
         'Shopping Cart Item',
+        'General Card Deposit',
+        'General Card Withdrawal',
         'General Credit Card Deposit',
         'General Credit Card Withdrawal',
         'Bank Deposit to PP Account ',
@@ -62,17 +64,18 @@ SKIPS = {
         'BML Withdrawal - Transfer to BML',
         'Buyer Credit Payment Withdrawal - Transfer To BML'
     ),
-    'STAT' : ('Pending','Processing')
+    'STAT' : ('Pending','Processing'),
 }
-
 # Column name dictionary ( 'SHORT_COL_NAME' : 'Actual Name' )
-COL_NAMES = { 'URL'  : 'Transaction ID',
-              'TYPE' : 'Type',
-              'NAME' : 'Name',
-              'DATE' : 'Date',
-              'TIME' : 'Time',
-              'STAT' : 'Status',
-              'COL'  : 'Full Text' }
+COL_NAMES = {
+    'URL'  : 'Transaction ID',
+    'TYPE' : 'Type',
+    'NAME' : 'Name',
+    'DATE' : 'Date',
+    'TIME' : 'Time',
+    'STAT' : 'Status',
+    'COL'  : 'Full Text',
+}
 
 
 
