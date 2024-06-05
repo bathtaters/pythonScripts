@@ -5,6 +5,7 @@ Various Python Scripts for manipulating files/text/etc.
 *Filename* | *Description*
 -----:|:-----
 **[csvRowCombiner.py](csvRowCombiner.py)** | Combine every N lines in a CSV
+**[fileModUpdate.py](fileModUpdate.py)** | Update file modification times/dates from a CSV
 **[flattenFolders.py](flattenFolders.py)** | Flatten a nested folder structure
 **[googlePhotos_renamer.py](googlePhotos_renamer.py)** | Match & rename Google Photo JSONs
 **[listComb.py](listComb.py)** | Comb through list and merge similar entries
