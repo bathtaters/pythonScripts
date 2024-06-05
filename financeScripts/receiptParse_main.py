@@ -1036,9 +1036,9 @@ class UberTip(Receipt):
     text_blocks = (None,
                     r'You\s+rode\s+with\s',0)
     
-    parameters = { 'Account' : ((r'\?+\s+\d{4}\s',0),r'\?+\s+(\d{4})\s'),
-                   'Date' : ((r'^Total:?\s+'+REX['PRICE'],1),REX['DATESTR']),
-                   'Total' : ((r'^Total:?\s+'+REX['PRICE'],0),REX['PRICE']) }
+    parameters = { 'Account' : ((r'\?+\s*\d{4}\s',0),r'\?+\s*(\d{4})\s'),
+                   'Date' : ((r'^\s*'+REX['DATESTRICT']+r'\s$',0),REX['DATESTRICT']),
+                   'Total' : ((r'^\s*Total',1),REX['PRICE']) }
 
 
 class Via(Receipt):
