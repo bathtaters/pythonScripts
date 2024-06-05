@@ -1010,7 +1010,7 @@ class LyftTip(Receipt):
         if row[COLS.index('Date')]: row[COLS.index('Date')] += ', ' + str(YEAR)
         return 0
 
- 
+
 class Uber(Receipt):
     has_txt = ('Uber',re.compile(r'Thanks\s+for\s+riding,\s'))
     _counter = 0
@@ -1019,9 +1019,9 @@ class Uber(Receipt):
     text_blocks = (None,
                     r'You\s+rode\s+with\s',0)
     
-    parameters = { 'Account' : ((r'\?+\s+\d{4}\s',0),r'\?+\s+(\d{4})\s'),
-                   'Date' : ((r'^Total:?\s+'+REX['PRICE'],1),REX['DATESTR']),
-                   'Total' : ((r'^Total:?\s+'+REX['PRICE'],0),REX['PRICE']) }
+    parameters = { 'Account' : ((r'\?+\s*\d{4}\s',0),r'\?+\s*(\d{4})\s'),
+                   'Date' : ((REX['DATESTRICT'],0),REX['DATESTR']),
+                   'Total': ((r'^Total',1), REX['PRICE']) }
 
     def row_fix(self,row,rec_num):
         if row[COLS.index('Total')]: row[COLS.index('Total')] = row[COLS.index('Total')].replace('$','')
@@ -1037,8 +1037,12 @@ class UberTip(Receipt):
                     r'You\s+rode\s+with\s',0)
     
     parameters = { 'Account' : ((r'\?+\s*\d{4}\s',0),r'\?+\s*(\d{4})\s'),
-                   'Date' : ((r'^\s*'+REX['DATESTRICT']+r'\s$',0),REX['DATESTRICT']),
-                   'Total' : ((r'^\s*Total',1),REX['PRICE']) }
+                   'Date' : ((REX['DATESTRICT'],0),REX['DATESTR']),
+                   'Total': ((r'^Total',1), REX['PRICE']) }
+
+    def row_fix(self,row,rec_num):
+        if row[COLS.index('Total')]: row[COLS.index('Total')] = row[COLS.index('Total')].replace('$','')
+        return 0
 
 
 class Via(Receipt):
@@ -1049,7 +1053,7 @@ class Via(Receipt):
 
     text_blocks = (r'Trip\s+Date',r'Please\s+note:\s+credit',0)
 
-    parameters = { 'Account' : ((r'Charged\s+to\s',0),r'(\d{4}):\s'),
+    parameters = { 'Account' : ((r'(?:Charg|Bill)ed\s+to\s',0),r'[^\d](\d{4})[: ]'),
                    'Date' : ((0,0),r'^\s*'+REX['DATESTR']),
                    'Total' : ((r'Total\s+Amount\s+Billed:',1),REX['PRICE']+'\s+\$[\s\d\.,]+\s*$') }
 
@@ -1091,10 +1095,10 @@ class PayPalOut(Receipt):
     _counter = 0
     category = 'TBD'
 
-    parameters = { 'Account' : ((r'Funding Source:',0),r'\s(?:x[-–—])?(\d{4}|TXNBML)\s'),
-                   'Date' : ((REX['DATESTR']+r'\s+at\s',0),REX['DATESTR']),
-                   'Total' : ((r'Funding Source:',0),r'Funding Source:\s*([-–—]?[\'"`]?\s*'+REX['PRICE']+')\s') }
-    text_blocks = (r'^\s?Transaction det',
+    parameters = { 'Account' : ((r'Funding Source:',0),r'\s(?:x-)?(\d{4}|TXNBML)\s'),
+                   'Date' : ((REX['DATESTR']+r'\sat\s',0),REX['DATESTR']+r'\sat\s'),
+                   'Total' : ((r'Funding Source:',0),r'Funding Source:\s'+REX['PRICE']+'\s') }
+    text_blocks = (r'^\s?Transaction details',
                    r'\sResolution\sCenter', 1)
                    
     def row_fix(self,row,rec_num):
@@ -1145,12 +1149,12 @@ class PayPalIn(Receipt):
 
 
 class VenmoOut(Receipt):
-    has_txt = ('venmo','You paid ')
+    has_txt = ('venmo', re.compile('You\spaid'))
     _counter = 0
     category = 'TBD'
     capture_method = 'venmo_out_capture'
 
-    parameters = { 'Account' : ((r'(Completed via\s|A total of\s)',0),r'ending in\s(\w{4})'),
+    parameters = { 'Account' : ((r'(Completed via your\s|ending in\s\w{4})',0),r'ending in\s(\w{4})'),
                    #OLD ACCT : ((r'^A total of\s'+REX['PRICE'],0),r'ending in (\d{4}),'),
                    'Date' : ((r'\sP[SD]T\s',0),REX['DATESTR']+r'\sP[SD]T\s'),
                    'Total' : ((r'[-+]\s\$',0),r'[-+]\s'+REX['PRICE']+'\s') }
@@ -1199,14 +1203,14 @@ class VenmoOut(Receipt):
 
 class VenmoIn(Receipt):
     vendor_name = 'Venmo'
-    has_txt = ('venmo',' paid You')
+    has_txt = ('venmo',re.compile('paid\sYou'))
     _counter = 0
     category = 'Income'
 
     backup_class = 'VenmoOut'
     regex_flags = re.I
-    text_blocks = (r'^\s?Bank Transfer Initiated',
-                   r'^YOUR TRANSFER NUMBER IS:|^You can see the status',0)
+    text_blocks = (r'Bank Transfer Initiated',
+                   r'YOUR TRANSFER NUMBER IS:|You can see the status',0)
     parameters = { 'Account' : ((r'\s[7-~]{4}(\d{4})\s',0),r'\s[7-~]{4}(\d{4})\s'),
                    'Date' : ((r'\w{6,9},\s'+REX['DATESTRICT']+r'\s',0),r'\w{6,9},\s'+REX['DATESTRICT']+r'\s'),
                    'Total' : ((r'^TRANSFER\s*AMOUNT\s*\$|^'+REX['PRICE'],0),REX['PRICE']+'\s') }
@@ -1279,7 +1283,7 @@ class QuickBooks(Receipt):
                    'Date' : ((r'\s*Order\s*date:\s*',0), r'\s*Order\s*date:\s*'+REX['DATESTR']),
                    'Total' : ((r'\s*Total\s*charges:\s*',0), r'\s*Total\s*charges:\s*'+REX['PRICE']) }
 
-        
+
 class SquarePay(Receipt):
     has_txt = ('square1bank',None)
     _counter = 0
