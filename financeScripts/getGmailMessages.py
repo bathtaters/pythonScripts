@@ -39,7 +39,7 @@ unames = ["uname1","uname2"]
 pwords = [None,None]
 # None = prompt user
 
-# Gmail label/folder to use
+# Gmail label/folder to use (None = Inbox)
 folders = ["Label1","Label2"]
 
 # Save to
@@ -421,7 +421,7 @@ def open_imap(host,uname,pword,ssl=True,port='default'):
     conn = None
     if ssl: conn = imaplib.IMAP4_SSL(host)
     else: conn = imaplib.IMAP4(host)
-    if not pword: pword = get_pword(uname)
+    if not pword: pword = ask_pword(uname)
     try:
         conn.login(uname,pword)
     except imaplib.IMAP4.error as e:
@@ -468,8 +468,8 @@ def mail_find(s,conn,unread_only=True):
         return None
     if unread_only: remove_seen(uids,conn)
     return uids
- 
-def get_pword(uname):
+
+def ask_pword(uname):
     return getpass.getpass('Enter password for '+uname+':')
 
 def save_link_file(f,link):
@@ -985,3 +985,5 @@ def batch():
 
 save_to = fix_save_dir(save_to)
 batch()
+
+#set_pword("password", N) # Uncomment to encode password in position N
