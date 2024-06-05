@@ -578,6 +578,7 @@ class Receipt:
         # Value of None in start/end_line = begin/stop capture at start/end of text file
         # 0 as additional_lines does not capture start/end_line itself
         # +n includes n lines before start/after end_line (-n trims by n lines on either side)
+        # If start_line == end_line AND additional_lines > 0 => only capture 1 line
 
         # NEW METHOD:
         # text_blocks = ((start_line, end_line, additional_lines),(start_line, end_line, additional_lines),...)
@@ -588,6 +589,7 @@ class Receipt:
 
         # Setup capture values
         size = len(self.text_blocks)
+        capture_one = [(len(blk) == 3 and type(blk[2]) is int and blk[0] == blk[1] and blk[2] > 0) for blk in self.text_blocks]
         line_re = tuple( zip(
                         *[ [ re.compile(x,self.regex_flags) if x else None
                          for x in block[:2] ] for block in self.text_blocks ]
@@ -618,10 +620,10 @@ class Receipt:
                         if buffsize[blk] > 0: buff[blk].append(line) # build add_lines buffer
                         if line_re[0][blk] and line_re[0][blk].search(line):
                             if DEBUG['bounds']: print('--START['+str(blk)+'] (buffer:'+str(offset[blk])+')','--' if DEBUG['all'] else ': '+line[:-1])
-                            new_entry[blk],reading[blk],buff[blk] = buff[blk],1,[]
+                            new_entry[blk],reading[blk],buff[blk] = buff[blk],1,[]                        
                     else:
-                        if line_re[1][blk] and line_re[1][blk].search(line):
-                            if DEBUG['bounds']: print('---END['+str(blk)+'] (buffer:'+str(offset[blk])+')','---' if DEBUG['all'] else ': '+line[:-1])
+                        if capture_one[blk] or (line_re[1][blk] and line_re[1][blk].search(line)):
+                            if DEBUG['bounds']: print('---END['+str(blk)+']','*Single Line Capture*' if capture_one[blk] else '','(buffer:'+str(offset[blk])+')','---' if DEBUG['all'] else ': '+line[:-1])
                             reading[blk] = -1 # -1 = continue reading add_lines
                         if reading[blk] == -1 and buffsize[blk] < 1: # start new entry
                             self.captured[blk].append(new_entry[blk][-buffsize[blk]:len(new_entry[blk])+buffsize[blk]])
